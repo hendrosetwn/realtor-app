@@ -10,11 +10,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users {
+model User {
   id               Int       @id @default(autoincrement())
   name             String
   phone            String
-  email            String
+  email            String    @unique
   password         String
   created_at       DateTime  @default(now())
   updated_at       DateTime  @updatedAt
@@ -38,7 +38,7 @@ model Home {
   property_type       PropertyType
   images              Image[]
   realtor_id          Int
-  realtor             Users        @relation(fields: [realtor_id], references: [id])
+  realtor             User         @relation(fields: [realtor_id], references: [id])
   messages            Message[]
 }
 
@@ -57,9 +57,9 @@ model Message {
   home_id    Int
   home       Home   @relation(fields: [home_id], references: [id])
   realtor_id Int
-  realtor    Users  @relation("realtor_messages", fields: [realtor_id], references: [id])
+  realtor    User   @relation("realtor_messages", fields: [realtor_id], references: [id])
   buyer_id   Int
-  buyer      Users  @relation("buyer_messages", fields: [buyer_id], references: [id])
+  buyer      User   @relation("buyer_messages", fields: [buyer_id], references: [id])
 }
 
 enum PropertyType {
