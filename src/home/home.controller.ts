@@ -11,8 +11,8 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { PropertyType, UserType } from '@prisma/client';
-import { Roles } from 'src/decorators/roles.decorator';
-import { User, UserInfo } from 'src/user/decorators/user.decorator';
+import { Roles } from '../decorators/roles.decorator';
+import { User, UserInfo } from '../user/decorators/user.decorator';
 import {
   CreateHomeDto,
   HomeResponseDto,
